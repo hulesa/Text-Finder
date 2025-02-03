@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Text Finder</string>
+    <string name="editTextHint">Search for...</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="pdf">PDF</string>
+    <string name="capture">Capture</string>
+    <string name="new_picture">New Picture</string>
+    <string name="contentDescription">contentDescription</string>
+    <string name="new_pdf">New PDF</string>
+</resources>
