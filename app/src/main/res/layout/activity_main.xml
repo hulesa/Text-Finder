@@ -208,8 +208,8 @@
 
     <TextView
         android:id="@+id/pageCounterTV"
-        android:layout_width="120sp"
-        android:layout_height="70sp"
+        android:layout_width="200sp"
+        android:layout_height="100sp"
         android:text=""
         android:textColor="@color/black"
         android:background="@color/white"

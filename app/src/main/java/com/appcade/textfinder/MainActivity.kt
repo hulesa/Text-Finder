@@ -158,7 +158,7 @@ class MainActivity : ComponentActivity() {
                                             true
                                         ) {}
                                     } else {
-                                       processFileAndDetectTargetWord(currentPDFPages[0], true){}
+                                        processFileAndDetectTargetWord(currentPDFPages[0], true) {}
                                     }
                                 }
                             }
@@ -236,6 +236,7 @@ class MainActivity : ComponentActivity() {
             currentPDFPages.clear()
             currentPDFPagesContaining.clear()
             setDefaultVisibilities()
+            closeKeyboard()
         }
 
         nextPageButton.setOnClickListener {
@@ -387,16 +388,17 @@ class MainActivity : ComponentActivity() {
                 this,
                 R.color.orange
             )
+
             else -> Color.RED
         }
 
         runOnUiThread { inputET.setTextColor(color) }
     }
 
-    private fun highlightWordOnImage(photoFile: File, detectedText: Text) {
+    private fun highlightWordOnImage(file: File, detectedText: Text) {
         // load bitmap from gallery
         val bitmap =
-            BitmapFactory.decodeFile(photoFile.absolutePath)?.copy(Bitmap.Config.ARGB_8888, true)
+            BitmapFactory.decodeFile(file.absolutePath)?.copy(Bitmap.Config.ARGB_8888, true)
         //val bitmap = correctBitmapOrientation(photoFile.absolutePath).copy(Bitmap.Config.ARGB_8888, true)
         if (bitmap == null) {
             Log.e("ImageProcessing", "Failed to load bitmap")
@@ -678,14 +680,20 @@ class MainActivity : ComponentActivity() {
         recognizer.process(image)
             .addOnSuccessListener { visionText ->
 
+                // filter out MLKit signature
+                val cleanBlocks = visionText.textBlocks.filter { block ->
+                    !block.text.contains("com.google.mlkit.vision.text.text", ignoreCase = true)
+                }
+
                 if (useGraphic) {
-                    val processedText = mergeLines(visionText.textBlocks)
-                    highlightWord(visionText.toString(), processedText)
+                    val processedText = mergeLines(cleanBlocks)
+                    highlightWord(visionText.text, processedText)
                     highlightWordOnImage(file, visionText)
                 }
 
-                if (visionText.toString().contains(targetWord, ignoreCase = true)
-                    || mergeLines(visionText.textBlocks).contains(targetWord, ignoreCase = true)
+                if (visionText.text.contains(targetWord, ignoreCase = true) || mergeLines(
+                        cleanBlocks
+                    ).contains(targetWord, ignoreCase = true)
                 ) {
                     callback(true)
                 } else {
