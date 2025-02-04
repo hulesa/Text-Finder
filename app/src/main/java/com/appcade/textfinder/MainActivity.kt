@@ -66,6 +66,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var newPDFButton: Button
     private lateinit var imageCapture: ImageCapture
     private lateinit var pageCounterTV: TextView
+    private lateinit var versionTV: TextView
 
     private var recognizer: TextRecognizer =
         TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
@@ -99,7 +100,10 @@ class MainActivity : ComponentActivity() {
         prevPageButton = findViewById(R.id.prevPageButton)
         newPDFButton = findViewById(R.id.newPDFButton)
         pageCounterTV = findViewById(R.id.pageCounterTV)
+        versionTV = findViewById(R.id.versionTV)
         //endregion
+
+        versionTV.text = packageManager.getPackageInfo(packageName, 0).versionName
 
         setDefaultVisibilities()
 
