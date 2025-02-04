@@ -63,6 +63,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var homeButton: ImageButton
     private lateinit var nextPageButton: ImageButton
     private lateinit var prevPageButton: ImageButton
+    private lateinit var infoButton: ImageButton
     private lateinit var newPDFButton: Button
     private lateinit var imageCapture: ImageCapture
     private lateinit var pageCounterTV: TextView
@@ -101,6 +102,7 @@ class MainActivity : ComponentActivity() {
         newPDFButton = findViewById(R.id.newPDFButton)
         pageCounterTV = findViewById(R.id.pageCounterTV)
         versionTV = findViewById(R.id.versionTV)
+        infoButton = findViewById(R.id.infoButton)
         //endregion
 
         versionTV.text = packageManager.getPackageInfo(packageName, 0).versionName
@@ -263,6 +265,10 @@ class MainActivity : ComponentActivity() {
             processPDF()
         }
 
+        infoButton.setOnClickListener {
+            startActivity(Intent(this, InfoActivity::class.java))
+        }
+
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Overrides backPress closing the app
@@ -293,6 +299,8 @@ class MainActivity : ComponentActivity() {
         galleryButton.visibility = View.VISIBLE
         pdfButton.visibility = View.VISIBLE
         homeButton.visibility = View.VISIBLE
+        versionTV.visibility = View.VISIBLE
+        infoButton.visibility = View.VISIBLE
 
         inputET.visibility = View.GONE
         captureButton.visibility = View.GONE

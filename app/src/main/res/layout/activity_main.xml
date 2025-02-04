@@ -244,6 +244,27 @@
         app:layout_constraintVertical_bias="0.05"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <ImageButton
+        android:id="@+id/infoButton"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:background="@drawable/rounded_button_15"
+        android:backgroundTint="@color/grey"
+        android:contentDescription="@string/contentDescription"
+        android:foreground="@mipmap/info_icon_foreground"
+        android:gravity="center"
+        android:text=""
+        android:visibility="gone"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <TextView
         android:id="@+id/versionTV"
         android:layout_width="50sp"
