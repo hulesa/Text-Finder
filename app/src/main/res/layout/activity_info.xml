@@ -9,16 +9,19 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="250sp"
+        android:layout_height="540dp"
+        android:gravity="start|center"
         android:text="@string/info"
-        android:textSize="20sp"
         android:textColor="@color/black"
-        android:gravity="center"
+        android:textSize="20sp"
+        android:lineSpacingExtra="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <ImageButton
         android:id="@+id/infoCloseButton"
@@ -27,7 +30,7 @@
         android:background="@drawable/rounded_button_15"
         android:backgroundTint="@color/grey"
         android:contentDescription="@string/contentDescription"
-        android:foreground="@mipmap/info_icon_foreground"
+        android:foreground="@mipmap/close_icon_foreground"
         android:gravity="center"
         android:text=""
         android:visibility="visible"

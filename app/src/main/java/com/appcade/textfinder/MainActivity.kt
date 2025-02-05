@@ -81,6 +81,8 @@ class MainActivity : ComponentActivity() {
     private var targetWord: String = ""
     //endregion
 
+    @Suppress("DEPRECATION")
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -105,7 +107,9 @@ class MainActivity : ComponentActivity() {
         infoButton = findViewById(R.id.infoButton)
         //endregion
 
-        versionTV.text = packageManager.getPackageInfo(packageName, 0).versionName
+        val a = packageManager.getPackageInfo(packageName, 0).versionName
+        val b = packageManager.getPackageInfo(packageName, 0).versionCode
+        versionTV.text = "$a.$b"
 
         setDefaultVisibilities()
 
